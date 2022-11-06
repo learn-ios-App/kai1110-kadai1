@@ -8,14 +8,49 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var number1 = ""
+    @State private var number2 = ""
+    @State private var number3 = ""
+    @State private var number4 = ""
+    @State private var number5 = ""
+    @State private var sumNumber = 0
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            TextField("", text:$number1)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            TextField("", text:$number2)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            TextField("", text:$number3)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            TextField("", text:$number4)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            TextField("", text:$number5)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            Button(action: {
+                sumNumber = 0
+                plusNumber(number: number1)
+                plusNumber(number: number2)
+                plusNumber(number: number3)
+                plusNumber(number: number4)
+                plusNumber(number: number5)
+            }) {
+                Text("計算")
+            }
+            .padding()
+            Text("合計:\(sumNumber)")
         }
-        .padding()
+    }
+    func plusNumber(number: String) {
+        if let unwrappedNumber = Int(number) {
+            sumNumber += unwrappedNumber
+        }
     }
 }
 
